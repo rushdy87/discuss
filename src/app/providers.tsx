@@ -2,6 +2,7 @@
 
 // 1. import `NextUIProvider` component
 import { NextUIProvider } from '@nextui-org/react';
+import { SessionProvider } from 'next-auth/react';
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -9,5 +10,9 @@ interface ProvidersProps {
 
 export default function Providers({ children }: ProvidersProps) {
   // 2. Wrap NextUIProvider at the root of your app
-  return <NextUIProvider>{children}</NextUIProvider>;
+  return (
+    <SessionProvider>
+      <NextUIProvider>{children}</NextUIProvider>
+    </SessionProvider>
+  );
 }
